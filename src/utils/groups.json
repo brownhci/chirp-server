@@ -1,0 +1,11 @@
+{
+    "test_default": {
+        "mode": "full"
+    },
+    "test_1": {
+        "mode": "partial"
+    },
+    "test_2": {
+        "mode": "full"
+    }
+}
