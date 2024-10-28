@@ -1,4 +1,4 @@
-# Chime Server
+# Chirp Server
 
 Remote deploy doc: https://docs.google.com/document/d/1IonmV_BOxkqI56iw6IVp4ZT0CnO6Tb7wae3rO7opB3M/edit
 
