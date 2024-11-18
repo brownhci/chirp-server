@@ -1,6 +1,6 @@
 -- MariaDB dump 10.18  Distrib 10.5.8-MariaDB, for osx10.16 (x86_64)
 --
--- Host: 127.0.0.1    Database: chimetest
+-- Host: 127.0.0.1    Database: chirptest
 -- ------------------------------------------------------
 -- Server version	10.5.8-MariaDB
 
