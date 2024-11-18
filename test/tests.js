@@ -4,7 +4,7 @@ var fs = require('fs')
 // Switch to testing env, use superuser
 process.env.DB_USER = process.env.DB_SUPERUSER
 process.env.DB_USERPW = process.env.DB_SUPERUSERPW
-process.env.DB_NAME = 'chimetest'
+process.env.DB_NAME = 'chirptest'
 
 // Create superuser pool
 const mariadb = require('mariadb')
@@ -17,11 +17,11 @@ const pool = mariadb.createPool({
 // createDatabase creates a testing database
 function createDatabase(x) {
     return new Promise((resolve) => {
-        fs.readFile('chime.sql', 'utf8', function (err, data) {
+        fs.readFile('chirp.sql', 'utf8', function (err, data) {
             pool.getConnection().then((conn) => {
                 conn.query(
-                    `DROP DATABASE IF EXISTS chimetest;
-            CREATE DATABASE chimetest; USE chimetest;` + data
+                    `DROP DATABASE IF EXISTS chirptest;
+            CREATE DATABASE chirptest; USE chirptest;` + data
                 )
                     .then((rows) => {
                         console.log('Finished creating database')

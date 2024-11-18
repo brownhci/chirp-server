@@ -62,6 +62,6 @@ app.use(require('./routes/group'))
 app.use(require('./routes/test'))
 app.use(require('./routes/dashboard'))
 
-app.listen(port, host, () => console.log(`CHIME listening on ${host}:${port}!`))
+app.listen(port, host, () => console.log(`CHIRP listening on ${host}:${port}!`))
 
 module.exports = app

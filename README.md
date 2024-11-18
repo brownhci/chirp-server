@@ -15,23 +15,24 @@ This is going to be your best option for regular development. It will continue t
 *   After step 7 (run `brew services start mariadb` and `mysql_install_db`), you may need to run `sudo mariadb-secure-installation`. Follow instructions to set a root password.
 
 -   Access mariadb with `mariadb -u root -p`.
--   Create the chime database `CREATE DATABASE chime;`
--   Exit mariadb, then navigate to the chime-server directory and import the structure `mysql -u root -p chime < chime.sql` (sudo may be required for this operation)
--   Repeat the previous two steps but create an additional empty database (`CREATE DATABASE chimetest`) for the sake of testing `mysql -u root -p chimetest < chime.sql`
+-   Create the chirp database `CREATE DATABASE chirp;`
+-   Exit mariadb, then navigate to the chirp-server directory and import the structure `mysql -u root -p chirp < chirp.sql` (sudo may be required for this operation)
+-   Repeat the previous three steps to create an additional empty database (`CREATE DATABASE chirptest;`) for the sake of testing (`mysql -u root -p chirptest < chirp.sql`); if prompted for a password, this will be your mariadb password from the first access step 
 -   Choose a username and password for a test user, and a username and password for a test super user
--   Add both test users to the chimetest database with `CREATE USER '<username>'@localhost IDENTIFIED BY '<password>';` (you'll run this twice, once for each username and password pair from the previous step)
+-   Access mariadb with `mariadb -u root -p` (again)
+-   Add both test users to the chirptest database with `CREATE USER '<username>'@localhost IDENTIFIED BY '<password>';` (you'll run this twice, once for each username and password pair from the previous step)
 -   Grant the super user all permissions using `GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost';`
 -   Set the credentials of the super user to **DB_SUPERUSER** and **DB_SUPERUSERPW** in .env
 -   Set the credentials of the user to DB_USER and DB_USERPW in .env
 
 ### Server Setup
 
-The chime server runs on node.js, to set up your dependencies, navigate into the directory and run: `npm install`
+The chirp server runs on node.js, to set up your dependencies, navigate into the directory and run: `npm install`
 to start the server, run: `npm start`
 
 ### Env Structure
 
-If you do not already have a .env in Chime/chime_server/ then create one `touch Chime/chime_server/.env`
+If you do not already have a .env in Chirp/chirp_server/ then create one `touch Chirp/chirp_server/.env`
 
 Insert the following structure into that file.
 
@@ -41,9 +42,9 @@ SERVER_HOST="<server_host_ip>"
 SERVER_PORT="<server_port_number>"
 DB_HOST="<database_host>"
 USAGE_PERIOD_EXPIRATION="<random_string>"
-DB_NAME="<chime_database_name>"
-DB_USER="<chime_user_name>"
-DB_USERPW="<chime_user_password>"
+DB_NAME="<chirp_database_name>"
+DB_USER="<chirp_user_name>"
+DB_USERPW="<chirp_user_password>"
 DB_SUPERUSER="<superuser_name>"
 DB_SUPERUSERPW="<superuser_password>"
 ```
@@ -85,7 +86,7 @@ Make sure that **DB_SUPERUSER** and **DB_PASSWORD** are both set in your .env fi
 
 -   IDs are assigned automatically by an increment function, so retrieving items with ID greater than n will fetch items created after the item with ID n.
 
--   If you get `error 1449`, go into `chime.sql` and make sure the definer under each view is set to `'youruser'@'yourhost'`.
+-   If you get `error 1449`, go into `chirp.sql` and make sure the definer under each view is set to `'youruser'@'yourhost'`.
 
 -   Two [middlewares](https://expressjs.com/en/guide/using-middleware.html) exist within the project
 
@@ -103,7 +104,7 @@ Make sure that **DB_SUPERUSER** and **DB_PASSWORD** are both set in your .env fi
 # String used to secure session data
 SESSION_SECRET="chickenzrule"
 # Name of database
-DB_NAME="chime"
+DB_NAME="chirp"
 # Name of database user
 DB_USER="username"
 # Password for database
@@ -126,9 +127,9 @@ SERVER_PORT=3000
 
 ## Setup Through Docker
 
-This is the best option for testing frontend, but is not good for modifying/testing backend. This will run the version of chime*server \_on your local machine* with the same OS/settings as the server. It will also automatically set up the database. Note that every time you run this it will _reset the database to empty_.
+This is the best option for testing frontend, but is not good for modifying/testing backend. This will run the version of chirp*server \_on your local machine* with the same OS/settings as the server. It will also automatically set up the database. Note that every time you run this it will _reset the database to empty_.
 
 -   download and install Docker https://hub.docker.com/editions/community/docker-ce-desktop-mac/
--   Ask Talie for the docker-compose.yaml file and put it one level up (in Chime, on the same level as chime_server)
--   Navigate to /Chime and run `docker-compose up`
--   If you make changes to chime_server, cancel out of `docker-compose up`, run `docker-compose build`, then re-run `docker-compose up`
+-   Ask Talie for the docker-compose.yaml file and put it one level up (in Chirp, on the same level as chirp_server)
+-   Navigate to /Chirp and run `docker-compose up`
+-   If you make changes to chirp_server, cancel out of `docker-compose up`, run `docker-compose build`, then re-run `docker-compose up`
