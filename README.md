@@ -10,7 +10,7 @@ This is going to be your best option for regular development. It will continue t
 
 ### Database Setup
 
--   Make sure you have a [mariadb build installed on your computer](https://mariadb.com/resources/blog/installing-mariadb-10-1-16-on-mac-os-x-with-homebrew/)
+-   Make sure you have a [mariadb build installed on your computer](https://mariadb.com/resources/blog/installing-mariadb-10-1-16-on-mac-os-x-with-homebrew/). Stop after step 6.
 
 *   After step 6 (run `brew services start mariadb` and `mariadb_install_db`). Follow instructions to set a root password.
 
