@@ -24,6 +24,17 @@ This is going to be your best option for regular development. It will continue t
 -   Set the credentials of the super user to **DB_SUPERUSER** and **DB_SUPERUSERPW** in .env
 -   Set the credentials of the user to DB_USER and DB_USERPW in .env
 
+#### Potential Issues
+If you have messed up downloading mariadb or want to fresh install and reset all local databases and mariadb data, use the following steps
+
+- log into mariadb using `mariadb -u <username> -p`
+- run `Select @@datadir` to find the location that data is being stored
+- copy the location of the displayed directory
+- Exit mariadb
+- run `brew servives stop mariadb`
+- delete the directory at the previously copied location. For reference, on Dec 9, 2024 this was `/opt/homebrew/var/mysql` on my Macbook Pro
+- reinstall mariadb using the above instructions
+
 ### Server Setup
 
 The chime server runs on node.js, to set up your dependencies, navigate into the directory and run: `npm install`
@@ -94,6 +105,7 @@ Make sure that **DB_SUPERUSER** and **DB_PASSWORD** are both set in your .env fi
         a new usage period if the existing usage period has expired.
 
 -   All timestamps are UTC
+
 
 ## Environment
 
